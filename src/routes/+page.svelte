@@ -17,16 +17,16 @@
     ];
   
     const lineData = [
-        { date: new Date(2023, 0, 1), sales: 5000 },
-        { date: new Date(2023, 1, 1), sales: 7500 },
-        { date: new Date(2023, 2, 1), sales: 8000 },
-        { date: new Date(2023, 3, 1), sales: 6000 },
-        { date: new Date(2023, 6, 1), sales: 12000 },
-        { date: new Date(2023, 7, 1), sales: 14000 },
-        { date: new Date(2023, 8, 1), sales: 12500 },
-        { date: new Date(2023, 9, 1), sales: 15000 },
-        { date: new Date(2023, 10, 1), sales: 17000 },
-        { date: new Date(2023, 11, 1), sales: 18000 }
+        { date: new Date(2024, 0, 1), sales: 5000 },
+        { date: new Date(2024, 1, 1), sales: 7500 },
+        { date: new Date(2024, 2, 1), sales: 8000 },
+        { date: new Date(2024, 3, 1), sales: 6000 },
+        { date: new Date(2024, 6, 1), sales: 12000 },
+        { date: new Date(2024, 7, 1), sales: 14000 },
+        { date: new Date(2024, 8, 1), sales: 12500 },
+        { date: new Date(2024, 9, 1), sales: 15000 },
+        { date: new Date(2024, 10, 1), sales: 17000 },
+        { date: new Date(2024, 11, 1), sales: 18000 }
     ];
   </script>
   

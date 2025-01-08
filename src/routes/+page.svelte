@@ -1,33 +1,5 @@
 <script>
-    import BarChart from '../components/BarChart.svelte';
-    import ScatterPlot from '../components/ScatterPlot.svelte';
-    import LineChart from '../components/LineChart.svelte';
-  
-    const barData = [
-      { category: "Furniture", sales: 7425 },
-      { category: "Technology", sales: 13000 },
-      { category: "Office Supplies", sales: 9200 },
-    ];
-  
-    const scatterData = [
-      { sales: 5000, profit: 1000 },
-      { sales: 10000, profit: 2700 },
-      { sales: 7500, profit: 2900 },
-      { sales: 12000, profit: 3700 },
-    ];
-  
-    const lineData = [
-        { date: new Date(2024, 0, 1), sales: 5000 },
-        { date: new Date(2024, 1, 1), sales: 7500 },
-        { date: new Date(2024, 2, 1), sales: 8000 },
-        { date: new Date(2024, 3, 1), sales: 6000 },
-        { date: new Date(2024, 6, 1), sales: 12000 },
-        { date: new Date(2024, 7, 1), sales: 14000 },
-        { date: new Date(2024, 8, 1), sales: 12500 },
-        { date: new Date(2024, 9, 1), sales: 15000 },
-        { date: new Date(2024, 10, 1), sales: 17000 },
-        { date: new Date(2024, 11, 1), sales: 18000 }
-    ];
+    import Dataloader from "../components/Dataloader.svelte";
   </script>
   
   <style>
@@ -53,39 +25,13 @@
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
-    .chart-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 20px;
-    }
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .chart-container {
-        flex-direction: column;
-      }
-    }
   </style>
   
   <main>
     <h1>Superstore Dashboard</h1>
-  
+    
     <section>
-      <div class="chart-container">
-        <BarChart {barData} />
-      </div>
-    </section>
-  
-    <section>
-      <div class="chart-container">
-        <ScatterPlot {scatterData} />
-      </div>
-    </section>
-  
-    <section>
-      <div class="chart-container">
-        <LineChart {lineData} />
-      </div>
+      <Dataloader />
     </section>
   </main>
   

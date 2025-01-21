@@ -1,6 +1,6 @@
 <script>
     import Navbar from './Navbar.svelte';
-    import DataLoader from './DataLoader.svelte';
+    import DataLoader from './Dataloader.svelte';
     import BarChart from './charts/BarChart.svelte';
     import LineChart from './charts/LineChart.svelte';
     import HeatmapChart from './charts/HeatmapChart.svelte';

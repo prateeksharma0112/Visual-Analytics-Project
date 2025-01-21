@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
   import Papa from 'papaparse';
   import { onMount } from 'svelte';
   import { base } from '$app/paths';  // Added for GitHub Pages compatibility
@@ -50,4 +50,68 @@
   </ul>
 {:else}
   <p>Loading data...</p>
-{/if}
+{/if} -->
+
+<script>
+  import Papa from 'papaparse';
+  import { onMount } from 'svelte';
+
+  export let data = [];
+  export let onDataLoaded;
+
+  onMount(async () => {
+      const response = await fetch('data/SuperstoreOrders.csv');
+      const csvText = await response.text();
+
+      // Parsing CSV and ensuring proper number formatting
+      Papa.parse(csvText, {
+          header: true,
+          dynamicTyping: true,
+          complete: function(results) {
+              data = results.data.map(row => ({
+                  ...row,
+                  Sales: Number(row.Sales) || 0,
+                  Profit: Number(row.Profit) || 0
+              }));
+              onDataLoaded(data);
+          }
+      });
+  });
+</script>
+
+<!-- <p>Loading data...</p> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <script>
+  import Papa from 'papaparse';
+  import { onMount } from 'svelte';
+
+  export let data = [];
+  export let onDataLoaded;
+
+  onMount(async () => {
+      const response = await fetch('data/SuperstoreOrders.csv');
+      const csvText = await response.text();
+
+      Papa.parse(csvText, {
+          header: true,
+          dynamicTyping: true,
+          complete: function (results) {
+              data = results.data;
+              onDataLoaded(data);
+          }
+      });
+  });
+</script> -->
+
+<!-- <p>Loading data...</p> -->

@@ -55,16 +55,15 @@
         </div>
     </section>
 
-    <!-- Heatmap Section -->
-    <section style="padding: 2rem;">
-        <h3>Profit Distribution by Region</h3>
+    <section style="padding: 2rem; display: flex; justify-content: space-around;">
+        <div style="width: 45%;">
+            <h3>Profit Distribution by Region</h3>
+            <PieChart {data} />
+        </div>
+        <div style="width: 45%;">
+            <h3>Sales Distribution by Customer Segment</h3>
         <HeatmapChart {data} />
-    </section>
-
-    <!-- Pie Chart Section -->
-    <section style="padding: 2rem;">
-        <h3>Sales Distribution by Customer Segment</h3>
-        <PieChart {data} />
+        </div>
     </section>
 {:else}
     <p style="text-align: center; padding: 2rem;">Loading data and charts...</p>

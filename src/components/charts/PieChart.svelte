@@ -130,7 +130,7 @@
     background-color: #f3f4f6;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
 ">
-    <label for="segmentSelect" style="font-size: 1.1rem; font-weight: bold;">Select Segment:</label>
+    <label for="segmentSelect" style="font-size: 1.1rem; font-weight: bold;">Select Customers Segment:</label>
     <select id="segmentSelect" bind:value={selectedSegment} on:change={filterData} style="
         padding: 0.5rem;
         border: 2px solid #3498db;

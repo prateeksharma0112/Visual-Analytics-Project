@@ -12,13 +12,13 @@
         filteredData = selectedRegion === "All Regions"
             ? [...data]
             : data.filter(d => d.Region === selectedRegion);
-        drawBarChart();  
+        drawBarChart();
     }
 
     onMount(() => {
         uniqueRegions = [...new Set(data.map(d => d.Region))];
-        filteredData = [...data]; 
-        drawBarChart(); 
+        filteredData = [...data];
+        drawBarChart();
     });
 
     function drawBarChart() {
@@ -31,10 +31,10 @@
             filteredData,
             v => d3.sum(v, d => d.Sales),
             d => d.Category
-        ).sort((a, b) => b[1] - a[1]); 
+        ).sort((a, b) => b[1] - a[1]);
 
         const margin = { top: 50, right: 30, bottom: 60, left: 80 };
-        const width = 600 - margin.left - margin.right;
+        const width = document.getElementById("barChart").clientWidth - margin.left - margin.right;
         const height = 400 - margin.top - margin.bottom;
 
         // Clear previous chart
@@ -71,7 +71,7 @@
             .domain([0, d3.max(salesByCategory, d => d[1])])
             .range([height, 0]);
 
-        // Draw Bars with the Gradient Color (No Hover Effect)
+        // Draw Bars with the Gradient Color
         svg.selectAll("rect")
             .data(salesByCategory)
             .enter()
@@ -81,7 +81,7 @@
             .attr("width", xScale.bandwidth())
             .attr("height", 0)
             .style("fill", "url(#barGradient)")
-            .attr("rx", 8)  // Rounded corners for a modern look
+            .attr("rx", 8) // Rounded corners
             .transition()
             .duration(800)
             .attr("y", d => yScale(d[1]))
@@ -116,33 +116,88 @@
     }
 </script>
 
-<!-- ✅ Stylish Region Filter Section -->
-<section style="
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 1rem; 
-    padding: 1rem;
-    border-radius: 10px;
-    background-color: #f3f4f6;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-">
-    <label for="region" style="font-size: 1.1rem; font-weight: bold;">Select Region:</label>
-    <select bind:value={selectedRegion} on:change={filterData} style="
+<style>
+    /* Container for Bar Chart and Filter Section */
+    .chart-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: auto;
+    }
+
+    /* Filter Section Styling */
+    .select-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        padding: 1rem;
+        background: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1rem;
+    }
+
+    label {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    select {
         padding: 0.5rem;
+        font-size: 1rem;
         border: 2px solid #3498db;
         border-radius: 8px;
-        cursor: pointer;
-        font-size: 1rem;
         background: #f9f9f9;
-    ">
-        <option value="All Regions">All Regions</option>
-        {#each uniqueRegions as region}
-            <option value={region}>{region}</option>
-        {/each}
-    </select>
-</section>
+        cursor: pointer;
+    }
 
-<!-- ✅ Bar Chart Container -->
-<!-- <h3 style="text-align: center; margin-top: 2rem;">Sales by Category</h3> -->
-<div id="barChart" style="padding: 1rem;"></div>
+    /* Chart Area Styling */
+    #barChart {
+        width: 100%; /* Full width of the container */
+        max-width: 100%; /* Prevent overflow */
+        height: 400px; /* Fixed height for the chart */
+        padding: 1rem;
+        overflow: hidden; /* Prevent unnecessary overflow */
+        box-sizing: border-box;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .chart-container {
+            padding: 0.5rem;
+        }
+
+        .select-container {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        select {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="chart-container">
+    <!-- Filter Section -->
+    <section class="select-container">
+        <label for="region">Select Region:</label>
+        <select bind:value={selectedRegion} on:change={filterData}>
+            <option value="All Regions">All Regions</option>
+            {#each uniqueRegions as region}
+                <option value={region}>{region}</option>
+            {/each}
+        </select>
+    </section>
+
+    <!-- Bar Chart Section -->
+    <div id="barChart"></div>
+</div>

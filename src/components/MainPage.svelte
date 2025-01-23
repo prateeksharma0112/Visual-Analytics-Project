@@ -30,94 +30,141 @@
     }
 </script>
 
-<!-- Navbar -->
-<Navbar title="Superstore Sales Dashboard" />
-<DataLoader {data} onDataLoaded={processData} />
+<style>
+    /* Main Container */
+    .main-page {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 1400px;
+        margin: auto;
+        /* padding: 1rem; */
+    }
 
-<!-- KPI Section -->
-<section style="
-    display: flex; 
-    flex-wrap: wrap; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 1rem; 
-    background: #f9f9f9; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    margin-bottom: 1rem; 
-    border-radius: 8px;
-">
-    <div style="text-align: center; flex: 1; margin: 0.5rem;">
-        <h2 style="font-size: 0.9rem; color: #333;">Total Sales</h2>
-        <p style="font-size: 1.2rem; font-weight: bold;">${totalSales.toFixed(2)}</p>
-        <small style="font-size: 0.8rem; color: #666;">Total revenue generated from all transactions</small>
-    </div>
-    <div style="text-align: center; flex: 1; margin: 0.5rem;">
-        <h2 style="font-size: 0.9rem; color: #333;">Total Profit</h2>
-        <p style="font-size: 1.2rem; font-weight: bold;">${totalProfit.toFixed(2)}</p>
-        <small style="font-size: 0.8rem; color: #666;">Net earnings after deducting costs</small>
-    </div>
-    <div style="text-align: center; flex: 1; margin: 0.5rem;">
-        <h2 style="font-size: 0.9rem; color: #333;">Profit Margin</h2>
-        <p style="font-size: 1.2rem; font-weight: bold;">{profitMargin}%</p>
-        <small style="font-size: 0.8rem; color: #666;">Percentage of profit from total revenue</small>
-    </div>
-    <div style="text-align: center; flex: 1; margin: 0.5rem;">
-        <h2 style="font-size: 0.9rem; color: #333;">Total Orders</h2>
-        <p style="font-size: 1.2rem; font-weight: bold;">{totalOrders}</p>
-        <small style="font-size: 0.8rem; color: #666;">Number of transactions recorded</small>
-    </div>
-    <div style="text-align: center; flex: 1; margin: 0.5rem;">
-        <h2 style="font-size: 0.9rem; color: #333;">Avg. Order Value</h2>
-        <p style="font-size: 1.2rem; font-weight: bold;">${averageOrderValue}</p>
-        <small style="font-size: 0.8rem; color: #666;">Revenue per transaction on average</small>
-    </div>
-    <div style="text-align: center; flex: 1; margin: 0.5rem;">
-        <h2 style="font-size: 0.9rem; color: #333;">Total Discounts</h2>
-        <p style="font-size: 1.2rem; font-weight: bold;">${totalDiscount.toFixed(2)}</p>
-        <small style="font-size: 0.8rem; color: #666;">Total discount amount applied to sales</small>
-    </div>
-</section>
-
-<!-- Charts Section -->
-{#if dataLoaded}
-    <section style="
-        display: grid; 
-        grid-template-columns: 1fr 1fr; 
-        gap: 1rem; 
-        padding: 1rem; 
-        background: #f9f9f9; 
-        border-radius: 8px; 
+    /* KPI Section */
+    .kpi-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+        background: #f9f9f9;
+        border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    ">
-        <div>
-            <h3 style="text-align: center; margin-bottom: 1rem;">Sales by Category</h3>
-            <BarChart {data} />
+    }
+
+    .kpi-card {
+        text-align: center;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Charts Section */
+    .chart-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+        background: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .chart-container {
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 1rem;
+        background: #333;
+        color: white;
+        margin-top: 1rem;
+        border-radius: 8px;
+    }
+
+    /* Media Queries for Smaller Screens */
+    @media (max-width: 768px) {
+        .kpi-section {
+            grid-template-columns: 1fr; /* Stack KPIs vertically */
+        }
+
+        .chart-section {
+            grid-template-columns: 1fr; /* Stack charts vertically */
+        }
+    }
+</style>
+
+<div class="main-page">
+    <!-- Navbar -->
+    <Navbar title="Superstore Sales Dashboard" />
+    <DataLoader {data} onDataLoaded={processData} />
+
+    <!-- KPI Section -->
+    <section class="kpi-section">
+        <div class="kpi-card">
+            <h2>Total Sales</h2>
+            <p>${totalSales.toFixed(2)}</p>
+            <small>Total revenue generated from all transactions</small>
         </div>
-        <div>
-            <h3 style="text-align: center; margin-bottom: 1rem;">Profit Distribution by Region</h3>
-            <PieChart {data} />
+        <div class="kpi-card">
+            <h2>Total Profit</h2>
+            <p>${totalProfit.toFixed(2)}</p>
+            <small>Net earnings after deducting costs</small>
         </div>
-        <div>
-            <h3 style="text-align: center; margin-bottom: 1rem;">Profit Trends Over Time</h3>
-            <LineChart {data} />
+        <div class="kpi-card">
+            <h2>Profit Margin</h2>
+            <p>{profitMargin}%</p>
+            <small>Percentage of profit from total revenue</small>
         </div>
-        <div>
-            <h3 style="text-align: center; margin-bottom: 1rem;">Discount Impact on Sales</h3>
-            <HeatmapChart {data} />
+        <div class="kpi-card">
+            <h2>Total Orders</h2>
+            <p>{totalOrders}</p>
+            <small>Number of transactions recorded</small>
+        </div>
+        <div class="kpi-card">
+            <h2>Avg. Order Value</h2>
+            <p>${averageOrderValue}</p>
+            <small>Revenue per transaction on average</small>
+        </div>
+        <div class="kpi-card">
+            <h2>Total Discounts</h2>
+            <p>${totalDiscount.toFixed(2)}</p>
+            <small>Total discount amount applied to sales</small>
         </div>
     </section>
-{:else}
-    <p style="text-align: center; padding: 2rem;">Loading data and charts...</p>
-{/if}
 
-<!-- Footer -->
-<footer style="
-    text-align: center; 
-    padding: 1rem; 
-    background: #333; 
-    color: white; 
-    margin-top: 1rem; 
-    border-radius: 8px;
-">
-    <p>© 2024 Superstore Sales Dashboard</p>
-</footer>
+    <!-- Charts Section -->
+    {#if dataLoaded}
+        <section class="chart-section">
+            <div class="chart-container">
+                <h3>Sales by Category</h3>
+                <BarChart {data} />
+            </div>
+            <div class="chart-container">
+                <h3>Profit Distribution by Region</h3>
+                <PieChart {data} />
+            </div>
+            <div class="chart-container">
+                <h3>Profit Trends Over Time</h3>
+                <LineChart {data} />
+            </div>
+            <div class="chart-container">
+                <h3>Discount Impact on Sales</h3>
+                <HeatmapChart {data} />
+            </div>
+        </section>
+    {:else}
+        <p style="text-align: center; padding: 2rem;">Loading data and charts...</p>
+    {/if}
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Superstore Sales Dashboard</p>
+    </footer>
+</div>

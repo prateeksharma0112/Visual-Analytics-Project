@@ -18,31 +18,29 @@
 
     // On Mount: Prepare Unique Regions and Draw Initial Chart
     onMount(() => {
-        uniqueRegions = [...new Set(data.map(d => d.Region))]; // Extract unique regions
-        filteredData = [...data]; // Default: All data
-        drawLineChart(); // Draw initial chart
+        uniqueRegions = [...new Set(data.map(d => d.Region))];
+        filteredData = [...data];
+        drawLineChart();
     });
 
-    // Draw Line Chart
     function drawLineChart() {
         if (filteredData.length === 0) {
             d3.select("#lineChart").html("<p>No data available for the selected region.</p>");
             return;
         }
 
-        // Prepare Data for Line Chart
         const profitTrends = d3.rollups(
             filteredData,
             v => d3.sum(v, d => d.Profit),
             d => d3.timeFormat("%Y-%m")(new Date(d["Order Date"]))
         ).sort((a, b) => new Date(a[0]) - new Date(b[0]));
 
+        const container = document.getElementById("lineChart");
         const margin = { top: 50, right: 30, bottom: 60, left: 80 };
-        const width = 600 - margin.left - margin.right;
+        const width = container.clientWidth - margin.left - margin.right;
         const height = 400 - margin.top - margin.bottom;
 
-        // Clear previous chart
-        const svg = d3.select("#lineChart")
+        const svg = d3.select(container)
             .html('')
             .append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -50,27 +48,26 @@
             .append("g")
             .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-        // Define Scales
         const xScale = d3.scaleTime()
-            .domain(d3.extent(profitTrends, d => new Date(d[0]))) // Min and Max dates
+            .domain(d3.extent(profitTrends, d => new Date(d[0])))
             .range([0, width]);
 
         const yScale = d3.scaleLinear()
             .domain([0, d3.max(profitTrends, d => d[1])])
             .range([height, 0]);
 
-        // Line Generator
         const line = d3.line()
             .x(d => xScale(new Date(d[0])))
             .y(d => yScale(d[1]))
-            .curve(d3.curveCatmullRom); // Smooth curve
+            .curve(d3.curveCatmullRom);
 
-        // Gradient for Line
         const gradient = svg.append("defs")
             .append("linearGradient")
             .attr("id", "lineGradient")
-            .attr("x1", "0%").attr("y1", "0%")
-            .attr("x2", "100%").attr("y2", "0%");
+            .attr("x1", "0%")
+            .attr("y1", "0%")
+            .attr("x2", "100%")
+            .attr("y2", "0%");
 
         gradient.append("stop")
             .attr("offset", "0%")
@@ -80,7 +77,6 @@
             .attr("offset", "100%")
             .attr("stop-color", "#00f2fe");
 
-        // Draw Line
         svg.append("path")
             .datum(profitTrends)
             .attr("fill", "none")
@@ -88,7 +84,6 @@
             .attr("stroke-width", 3)
             .attr("d", line);
 
-        // Add Points
         svg.selectAll("circle")
             .data(profitTrends)
             .enter()
@@ -98,8 +93,7 @@
             .attr("r", 5)
             .attr("fill", "#4facfe");
 
-        // Tooltips
-        const tooltip = d3.select("#lineChart")
+        const tooltip = d3.select(container)
             .append("div")
             .style("position", "absolute")
             .style("background", "#fff")
@@ -118,23 +112,12 @@
             })
             .on("mouseout", () => tooltip.style("display", "none"));
 
-        // Add X-Axis with Yearly Labels
         svg.append("g")
             .attr("transform", `translate(0, ${height})`)
-            .call(d3.axisBottom(xScale)
-                .ticks(d3.timeYear.every(1)) // Show ticks for every year
-                .tickFormat(d3.timeFormat("%Y"))); // Format as 'YYYY'
+            .call(d3.axisBottom(xScale).ticks(d3.timeYear.every(1)).tickFormat(d3.timeFormat("%Y")));
 
-        // Optional: Styling for X-Axis labels
-        svg.selectAll(".tick text")
-            .style("font-size", "12px")
-            .style("font-weight", "bold")
-            .style("fill", "#333");
-
-        // Add Y-Axis
         svg.append("g").call(d3.axisLeft(yScale));
 
-        // Y-axis Label
         svg.append("text")
             .attr("transform", "rotate(-90)")
             .attr("y", -50)
@@ -145,31 +128,82 @@
             .text("Profit (USD)");
     }
 </script>
-<!-- ✅ Stylish Region Filter Section -->
-<section style="
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 1rem; 
-    padding: 1rem;
-    border-radius: 10px;
-    background-color: #f3f4f6;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-">
-    <label for="region" style="font-size: 1.1rem; font-weight: bold;">Select Region:</label>
-    <select bind:value={selectedRegion} on:change={filterData} style="
+
+<style>
+    /* General Chart Styling */
+    .chart-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        margin: auto;
+        border-radius: 10px;
+        background: white;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+    }
+
+    /* Filter Section Styling */
+    .filter-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        padding: 1rem;
+        background: #f3f4f6;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    select {
         padding: 0.5rem;
+        font-size: 1rem;
         border: 2px solid #3498db;
         border-radius: 8px;
-        cursor: pointer;
-        font-size: 1rem;
         background: #f9f9f9;
-    ">
-        <option value="All Regions">All Regions</option>
-        {#each uniqueRegions as region}
-            <option value={region}>{region}</option>
-        {/each}
-    </select>
-</section>
+        cursor: pointer;
+    }
 
-<div id="lineChart" style="padding: 1rem;"></div>
+    /* Line Chart Styling */
+    #lineChart {
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        padding: 1rem;
+        overflow: hidden;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .filter-container {
+            flex-direction: column;
+        }
+
+        select {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="chart-container">
+    <!-- Filter Section -->
+    <section class="filter-container">
+        <label for="region">Select Region:</label>
+        <select bind:value={selectedRegion} on:change={filterData}>
+            <option value="All Regions">All Regions</option>
+            {#each uniqueRegions as region}
+                <option value={region}>{region}</option>
+            {/each}
+        </select>
+    </section>
+
+    <!-- Line Chart -->
+    <div id="lineChart"></div>
+</div>

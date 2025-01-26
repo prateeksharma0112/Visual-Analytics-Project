@@ -1,12 +1,13 @@
 <script>
     import { onMount } from 'svelte';
     import * as d3 from 'd3';
-    import DataLoader from '../DataLoader.svelte';
+    import DataLoader from '../Dataloader.svelte';
     import Heatmap from '../charts/SalesAndProfitPage/Heatmap.svelte';
     import BarChart from '../charts/SalesAndProfitPage/BarChart.svelte';
     import LineChart from '../charts/SalesAndProfitPage/LineChart.svelte';
     import Treemap from '../charts/SalesAndProfitPage/Treemap.svelte';
 
+    
     let data = [];
     let filteredData = [];
     let totalSales = 0;

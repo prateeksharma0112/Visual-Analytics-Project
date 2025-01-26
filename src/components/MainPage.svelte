@@ -1,10 +1,9 @@
 <script>
-    import Navbar from './Navbar.svelte';
     import DataLoader from './Dataloader.svelte';
-    import BarChart from './charts/BarChart.svelte';
-    import LineChart from './charts/LineChart.svelte';
-    import PieChart from './charts/PieChart.svelte';
-    import HeatmapChart from './charts/HeatmapChart.svelte';
+    import BarChart from './charts/HomePage/BarChart.svelte';
+    import LineChart from './charts/HomePage/LineChart.svelte';
+    import PieChart from './charts/HomePage/PieChart.svelte';
+    import HeatmapChart from './charts/HomePage/HeatmapChart.svelte';
 
     let data = [];
     let totalSales = 0;
@@ -31,16 +30,6 @@
 </script>
 
 <style>
-    /* Main Container */
-    .main-page {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        max-width: 1400px;
-        margin: auto;
-        /* padding: 1rem; */
-    }
-
     /* KPI Section */
     .kpi-section {
         display: grid;
@@ -78,16 +67,6 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    /* Footer */
-    footer {
-        text-align: center;
-        padding: 1rem;
-        background: #333;
-        color: white;
-        margin-top: 1rem;
-        border-radius: 8px;
-    }
-
     /* Media Queries for Smaller Screens */
     @media (max-width: 768px) {
         .kpi-section {
@@ -100,9 +79,6 @@
     }
 </style>
 
-<div class="main-page">
-    <!-- Navbar -->
-    <Navbar title="Superstore Sales Dashboard" />
     <DataLoader {data} onDataLoaded={processData} />
 
     <!-- KPI Section -->
@@ -143,11 +119,11 @@
     {#if dataLoaded}
         <section class="chart-section">
             <div class="chart-container">
-                <h3>Sales by Category</h3>
+                <h3>Sales (Category Wise)</h3>
                 <BarChart {data} />
             </div>
             <div class="chart-container">
-                <h3>Profit Distribution by Region</h3>
+                <h3>Profit Distribution (Region Wise)</h3>
                 <PieChart {data} />
             </div>
             <div class="chart-container">
@@ -162,9 +138,3 @@
     {:else}
         <p style="text-align: center; padding: 2rem;">Loading data and charts...</p>
     {/if}
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2024 Superstore Sales Dashboard</p>
-    </footer>
-</div>

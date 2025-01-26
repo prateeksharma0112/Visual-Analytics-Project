@@ -132,7 +132,7 @@
 </script>
 
 <!-- ✅ Stylish Segment Filter Section -->
-<section style="
+<!-- <section style="
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -155,7 +155,7 @@
             <option value={segment}>{segment}</option>
         {/each}
     </select>
-</section>
+</section> -->
 
 <!-- Heatmap Container -->
 <div id="heatmap" style="

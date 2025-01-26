@@ -132,7 +132,7 @@
     }
 
     /* Filter Section Styling */
-    .filter-container {
+    /* .filter-container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -157,7 +157,7 @@
         border-radius: 8px;
         background: #f9f9f9;
         cursor: pointer;
-    }
+    } */
 
     /* Pie Chart Styling */
     #pieChart {
@@ -170,7 +170,7 @@
     }
 
     /* Responsive Adjustments */
-    @media (max-width: 768px) {
+    /* @media (max-width: 768px) {
         .filter-container {
             flex-direction: column;
         }
@@ -178,12 +178,12 @@
         select {
             width: 100%;
         }
-    }
+    } */
 </style>
 
 <div class="chart-container">
     <!-- Filter Section -->
-    <section class="filter-container">
+    <!-- <section class="filter-container">
         <label for="segmentSelect">Select Customer Segment:</label>
         <select id="segmentSelect" bind:value={selectedSegment} on:change={filterData}>
             <option value="All Segments">All Segments</option>
@@ -191,7 +191,7 @@
                 <option value={segment}>{segment}</option>
             {/each}
         </select>
-    </section>
+    </section> -->
 
     <!-- Pie Chart Section -->
     <div id="pieChart"></div>

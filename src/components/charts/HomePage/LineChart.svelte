@@ -144,7 +144,7 @@
     }
 
     /* Filter Section Styling */
-    .filter-container {
+    /* .filter-container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -169,7 +169,7 @@
         border-radius: 8px;
         background: #f9f9f9;
         cursor: pointer;
-    }
+    } */
 
     /* Line Chart Styling */
     #lineChart {
@@ -181,7 +181,7 @@
     }
 
     /* Responsive Adjustments */
-    @media (max-width: 768px) {
+    /* @media (max-width: 768px) {
         .filter-container {
             flex-direction: column;
         }
@@ -189,12 +189,12 @@
         select {
             width: 100%;
         }
-    }
+    } */
 </style>
 
 <div class="chart-container">
     <!-- Filter Section -->
-    <section class="filter-container">
+    <!-- <section class="filter-container">
         <label for="region">Select Region:</label>
         <select bind:value={selectedRegion} on:change={filterData}>
             <option value="All Regions">All Regions</option>
@@ -202,7 +202,7 @@
                 <option value={region}>{region}</option>
             {/each}
         </select>
-    </section>
+    </section> -->
 
     <!-- Line Chart -->
     <div id="lineChart"></div>

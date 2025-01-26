@@ -131,7 +131,7 @@
     }
 
     /* Filter Section Styling */
-    .select-container {
+    /* .select-container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -157,7 +157,7 @@
         border-radius: 8px;
         background: #f9f9f9;
         cursor: pointer;
-    }
+    } */
 
     /* Chart Area Styling */
     #barChart {
@@ -175,19 +175,19 @@
             padding: 0.5rem;
         }
 
-        .select-container {
+        /* .select-container {
             flex-direction: column;
             gap: 0.5rem;
         }
 
         select {
             width: 100%;
-        }
+        } */
     }
 </style>
 
 <div class="chart-container">
-    <!-- Filter Section -->
+    <!-- Filter Section
     <section class="select-container">
         <label for="region">Select Region:</label>
         <select bind:value={selectedRegion} on:change={filterData}>
@@ -196,7 +196,7 @@
                 <option value={region}>{region}</option>
             {/each}
         </select>
-    </section>
+    </section> -->
 
     <!-- Bar Chart Section -->
     <div id="barChart"></div>

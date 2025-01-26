@@ -9,5 +9,5 @@ import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 export default defineConfig({
   plugins: [svelte()],
-  base: 'Visual-Analytics-Project/', // Replace with your GitHub repository name
+  base: '/Visual-Analytics-Project', // Replace with your GitHub repository name
 });

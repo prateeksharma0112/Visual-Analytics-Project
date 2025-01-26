@@ -1,6 +1,6 @@
 <script>
     import Navbar from '../components/Navbar.svelte';
-    import DataLoader from '../components/DataLoader.svelte';
+    import DataLoader from '../components/Dataloader.svelte';
     import { writable } from 'svelte/store';
     
     let { children } = $props();

@@ -74,13 +74,14 @@ function handleDataLoaded(loadedData) {
 
 <!-- Header Section -->
 <section style="text-align: center; padding: 0.5rem; background: #f9f9f9; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0,0,0,0.1);">
-    <h1 style="font-size: 1.5rem; margin-bottom: 0.5rem;">📊 Sales & Profit Analysis</h1>
+    <h1 style="font-size: 1.5rem; margin-bottom: 0.5rem;">💰 Gain Insights into Sales Performance & Profitability</h1>
 </section>
 
 <!-- Filter Section -->
 <div class="main-container">
     <!-- Sidebar Section -->
     <aside class="sidebar">
+        <h2>Filters</h2>
         <section class="filter-section">
             <div class="filter-group">
                 <label for="region-select">Region:</label>
@@ -102,17 +103,18 @@ function handleDataLoaded(loadedData) {
             </div>
         </section>
         <!-- KPI Section -->
-        <section class="kpi-section"> 
+        <section class="kpi-section">
+            <h2>📊 Key Metrics</h2> 
             <div class="kpi-card">
-                <h2>Total Sales</h2>
+                <h2>💰 Total Sales</h2>
                 <p>${totalSales.toFixed(2)}</p>
             </div>
             <div class="kpi-card">
-                <h2>Total Profit</h2>
+                <h2>📈 Total Profit</h2>
                 <p>${totalProfit.toFixed(2)}</p>
             </div>
             <div class="kpi-card">
-                <h2>Profit Margin</h2>
+                <h2>🎯 Profit Margin</h2>
                 <p>{profitMargin}%</p>
             </div>
         </section>
@@ -122,19 +124,19 @@ function handleDataLoaded(loadedData) {
     <main class="content">
         <section class="chart-section">
             <div class="chart-container">
-                <h3>Sales & Profit Distribution</h3>
+                <h3>🌍📦 Sales & Profit Density</h3>
                 <Heatmap data={filteredData} />
             </div>
             <div class="chart-container">
-                <h3>Sales & Profit (Category Wise) </h3>
+                <h3>🏆💰💹 Category Performance </h3>
                 <BarChart data={filteredData} xField="Category" yFields={['sales', 'profit']} />
             </div>
             <div class="chart-container">
-                <h3>Monthly Trends</h3>
+                <h3>📅🚀📈 Monthly Trends</h3>
                 <LineChart data={filteredData} timeFilter={selectedTime} />
             </div>
             <div class="chart-container">
-                <h3>Contribution (Sub-Category Wise)</h3>
+                <h3>🌳📊 Market Share Breakdown (Sub-Category Wise)</h3>
                 <Treemap data={filteredData} />
             </div>
         </section>

@@ -81,60 +81,64 @@
 
     <DataLoader {data} onDataLoaded={processData} />
 
-    <!-- KPI Section -->
-    <section class="kpi-section">
-        <div class="kpi-card">
-            <h2>Total Sales</h2>
-            <p>${totalSales.toFixed(2)}</p>
-            <small>Total revenue generated from all transactions</small>
-        </div>
-        <div class="kpi-card">
-            <h2>Total Profit</h2>
-            <p>${totalProfit.toFixed(2)}</p>
-            <small>Net earnings after deducting costs</small>
-        </div>
-        <div class="kpi-card">
-            <h2>Profit Margin</h2>
-            <p>{profitMargin}%</p>
-            <small>Percentage of profit from total revenue</small>
-        </div>
-        <div class="kpi-card">
-            <h2>Total Orders</h2>
-            <p>{totalOrders}</p>
-            <small>Number of transactions recorded</small>
-        </div>
-        <div class="kpi-card">
-            <h2>Avg. Order Value</h2>
-            <p>${averageOrderValue}</p>
-            <small>Revenue per transaction on average</small>
-        </div>
-        <div class="kpi-card">
-            <h2>Total Discounts</h2>
-            <p>${totalDiscount.toFixed(2)}</p>
-            <small>Total discount amount applied to sales</small>
-        </div>
-    </section>
+        <!-- KPI Section -->
+        <section class="kpi-section">
+            <div class="kpi-card">
+                <h2>💰 Total Sales</h2>
+                <p class="kpi-value">${totalSales.toFixed(2)}</p>
+                <small class="kpi-description">Total revenue generated from all transactions</small>
+            </div>
+            <div class="kpi-card">
+                <h2>📈 Total Profit</h2>
+                <p class="kpi-value">${totalProfit.toFixed(2)}</p>
+                <small class="kpi-description">Net earnings after deducting costs</small>
+            </div>
+            <div class="kpi-card">
+                <h2>🎯 Profit Margin</h2>
+                <p class="kpi-value">{profitMargin}%</p>
+                <small class="kpi-description">Percentage of profit from total revenue</small>
+            </div>
+            <div class="kpi-card">
+                <h2>📦 Total Orders</h2>
+                <p class="kpi-value">{totalOrders}</p>
+                <small class="kpi-description">Number of transactions recorded</small>
+            </div>
+            <div class="kpi-card">
+                <h2>🛒 Avg. Order Value</h2>
+                <p class="kpi-value">${averageOrderValue}</p>
+                <small class="kpi-description">Revenue per transaction on average</small>
+            </div>
+            <div class="kpi-card">
+                <h2>💸 Total Discounts</h2>
+                <p class="kpi-value">${totalDiscount.toFixed(2)}</p>
+                <small class="kpi-description">Total discount amount applied to sales</small>
+            </div>
+        </section>
 
     <!-- Charts Section -->
     {#if dataLoaded}
-        <section class="chart-section">
-            <div class="chart-container">
-                <h3>Sales (Category Wise)</h3>
-                <BarChart {data} />
-            </div>
-            <div class="chart-container">
-                <h3>Profit Distribution (Region Wise)</h3>
-                <PieChart {data} />
-            </div>
-            <div class="chart-container">
-                <h3>Profit Trends Over Time</h3>
-                <LineChart {data} />
-            </div>
-            <div class="chart-container">
-                <h3>Discount Impact on Sales</h3>
-                <HeatmapChart {data} />
-            </div>
-        </section>
+    <section class="chart-section">
+        <div class="chart-container">
+            <h3>📊 Category Sales Breakdown</h3>
+            <!-- <p class="chart-description">Top performing product categories</p> -->
+            <BarChart {data} />
+        </div>
+        <div class="chart-container">
+            <h3>🌍 Regional Profit Share</h3>
+            <!-- <p class="chart-description">Geographic earnings contribution</p> -->
+            <PieChart {data} />
+        </div>
+        <div class="chart-container">
+            <h3>📈 Profit Growth Timeline</h3>
+            <!-- <p class="chart-description">Monthly performance trajectory</p> -->
+            <LineChart {data} />
+        </div>
+        <div class="chart-container">
+            <h3>🔥 Discount Effectiveness Map</h3>
+            <!-- <p class="chart-description">Price reduction influence analysis</p> -->
+            <HeatmapChart {data} />
+        </div>
+    </section>
     {:else}
         <p style="text-align: center; padding: 2rem;">Loading data and charts...</p>
     {/if}

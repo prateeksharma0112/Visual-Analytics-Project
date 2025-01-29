@@ -82,7 +82,14 @@
 
         // Calculate repeat customer percentage
         const uniqueCustomerCounts = new Set(loadedData.map((d) => d['Customer ID']));
-        repeatCustomerPercentage = (1 - uniqueCustomerCounts.size / loadedData.length) * 100;
+        // repeatCustomerPercentage = (1 - uniqueCustomerCounts.size / loadedData.length) * 100;
+        const customerOrderCounts = d3.rollups(
+            loadedData,
+            (v) => v.length,
+            (d) => d['Customer ID']
+        );
+        const repeatCustomers = customerOrderCounts.filter(([_, count]) => count > 1).length;
+        repeatCustomerPercentage = (repeatCustomers / customerOrderCounts.length) * 100 || 0;
 
         // Calculate average order fulfillment time
         const fulfillmentTimes = loadedData.map((d) => {

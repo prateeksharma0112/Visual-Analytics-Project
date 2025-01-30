@@ -14,8 +14,9 @@
     let bestSellingProduct = { name: "N/A", sales: 0 };
     let highestProfitProduct = { name: "N/A", profit: 0 };
     let selectedCategory = "All Categories";
+    let selectedSubCategory = "All Sub-Categories"; // New
     let selectedRegion = "All Regions";
-    let startDate, endDate;
+    let selectedSegment = "All Segments"; // New
     let searchQuery = "";
 
     function processProductData(loadedData) {
@@ -29,6 +30,7 @@
             productName: d["Product Name"],
             category: d["Category"],
             subCategory: d["Sub-Category"],
+            segment: d["Segment"],
             totalSales: +d["Sales"],
             totalQuantity: +d["Quantity"],
             avgDiscount: (+d["Discount"] * 100).toFixed(1),
@@ -40,20 +42,20 @@
 
         applyFilters();
     }
-
     function applyFilters() {
         filteredData = data.filter(d => {
             const categoryMatch = selectedCategory === "All Categories" || d.category === selectedCategory;
+            const subCategoryMatch = selectedSubCategory === "All Sub-Categories" || d.subCategory === selectedSubCategory;
             const regionMatch = selectedRegion === "All Regions" || d.region === selectedRegion;
-            const dateMatch = (!startDate || d.orderDate >= new Date(startDate)) &&
-                              (!endDate || d.orderDate <= new Date(endDate));
+            const segmentMatch = selectedSegment === "All Segments" || d.segment === selectedSegment;
             const searchMatch = d.productName.toLowerCase().includes(searchQuery.toLowerCase());
 
-            return categoryMatch && regionMatch && dateMatch && searchMatch;
+            return categoryMatch && subCategoryMatch && regionMatch && segmentMatch && searchMatch;
         });
 
         calculateKPIs();
     }
+
 
     function calculateKPIs() {
         if (filteredData.length === 0) {
@@ -100,24 +102,59 @@
 
     <!-- 📌 Product Performance Table Section -->
     <main class="chart-section">
-        <!-- 📌 Filters Above Table -->
-        <div class="filter-container">
-            <input type="text" bind:value={searchQuery} placeholder="🔎 Search Product" on:input={applyFilters} />
-            <select bind:value={selectedCategory} on:change={applyFilters}>
+    <!-- 📌 Filters Above Table with Context -->
+    <div class="filter-container">
+        <!-- 🔍 Search Box -->
+        <div class="filter-group">
+            <label for="search-box">🔍 Search Product:</label>
+            <input id="search-box" type="text" bind:value={searchQuery} placeholder="Type product name..." on:input={applyFilters} />
+        </div>
+
+        <!-- 🏷️ Category Filter -->
+        <div class="filter-group">
+            <!-- <label for="category-select">Filter by Category:</label> -->
+            <select id="category-select" bind:value={selectedCategory} on:change={applyFilters}>
                 <option value="All Categories">All Categories</option>
                 {#each [...new Set(data.map(d => d.category))] as category}
                     <option value={category}>{category}</option>
                 {/each}
             </select>
-            <select bind:value={selectedRegion} on:change={applyFilters}>
+        </div>
+
+        <!-- 📂 Sub-Category Filter (NEW) -->
+        <div class="filter-group">
+            <!-- <label for="subcategory-select">Filter by Sub-Category:</label> -->
+            <select id="subcategory-select" bind:value={selectedSubCategory} on:change={applyFilters}>
+                <option value="All Sub-Categories">All Sub-Categories</option>
+                {#each [...new Set(data.map(d => d.subCategory))] as subCategory}
+                    <option value={subCategory}>{subCategory}</option>
+                {/each}
+            </select>
+        </div>
+
+        <!-- 🌍 Region Filter -->
+        <div class="filter-group">
+            <!-- <label for="region-select">Filter by Region:</label> -->
+            <select id="region-select" bind:value={selectedRegion} on:change={applyFilters}>
                 <option value="All Regions">All Regions</option>
                 {#each [...new Set(data.map(d => d.region))] as region}
                     <option value={region}>{region}</option>
                 {/each}
             </select>
-            <input type="date" bind:value={startDate} on:change={applyFilters} />
-            <input type="date" bind:value={endDate} on:change={applyFilters} />
         </div>
+
+        <!-- 👥 Customer Segment Filter (NEW) -->
+        <div class="filter-group">
+            <!-- <label for="segment-select">Filter by Customer Segment:</label> -->
+            <select id="segment-select" bind:value={selectedSegment} on:change={applyFilters}>
+                <option value="All Segments">All Segments</option>
+                {#each [...new Set(data.map(d => d.segment))] as segment}
+                    <option value={segment}>{segment}</option>
+                {/each}
+            </select>
+        </div>
+    </div>
+
 
         <!-- 📌 Product Performance Table -->
         <div class="chart-container">

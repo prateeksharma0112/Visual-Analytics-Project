@@ -9,7 +9,7 @@
 
     // Pagination
     let currentPage = 1;
-    let itemsPerPage = 10;
+    let itemsPerPage = 12;
     let totalPages = 1;
 
     // Sort & filter data when it updates
@@ -48,13 +48,13 @@
 
 <!-- 📌 Table Container -->
 <div class="table-container">
-    <!-- <input type="text" bind:value={searchQuery} placeholder="🔎 Search Product" class="search-box" /> -->
-
     <table>
         <thead>
             <tr>
                 <th on:click={() => sortTable("productName")}>📦 Product Name {sortKey === "productName" ? (sortOrder === "asc" ? "↑" : "↓") : ""}</th>
                 <th on:click={() => sortTable("category")}>🗂️ Category {sortKey === "category" ? (sortOrder === "asc" ? "↑" : "↓") : ""}</th>
+                <th on:click={() => sortTable("subCategory")}>🏷️ Sub-Category {sortKey === "subCategory" ? (sortOrder === "asc" ? "↑" : "↓") : ""}</th>
+                <th on:click={() => sortTable("segment")}>👥 Segment {sortKey === "segment" ? (sortOrder === "asc" ? "↑" : "↓") : ""}</th>
                 <th on:click={() => sortTable("totalSales")}>💰 Sales ($) {sortKey === "totalSales" ? (sortOrder === "asc" ? "↑" : "↓") : ""}</th>
                 <th on:click={() => sortTable("totalQuantity")}>📦 Quantity Sold {sortKey === "totalQuantity" ? (sortOrder === "asc" ? "↑" : "↓") : ""}</th>
                 <th on:click={() => sortTable("avgDiscount")}>⚡ Avg. Discount (%) {sortKey === "avgDiscount" ? (sortOrder === "asc" ? "↑" : "↓") : ""}</th>
@@ -68,6 +68,8 @@
                 <tr>
                     <td>{item.productName}</td>
                     <td>{item.category}</td>
+                    <td>{item.subCategory}</td>
+                    <td>{item.segment}</td>
                     <td>${new Intl.NumberFormat().format(item.totalSales)}</td>
                     <td>{item.totalQuantity}</td>
                     <td>{item.avgDiscount}%</td>

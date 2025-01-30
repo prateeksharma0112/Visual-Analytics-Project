@@ -102,22 +102,22 @@ function handleDataLoaded(loadedData) {
                 </select>
             </div>
         </section>
-        <!-- KPI Section -->
-        <section class="kpi-section">
-            <h2>📊 Key Metrics</h2> 
-            <div class="kpi-card">
-                <h2>💰 Total Sales</h2>
-                <p>${totalSales.toFixed(2)}</p>
-            </div>
-            <div class="kpi-card">
-                <h2>📈 Total Profit</h2>
-                <p>${totalProfit.toFixed(2)}</p>
-            </div>
-            <div class="kpi-card">
-                <h2>🎯 Profit Margin</h2>
-                <p>{profitMargin}%</p>
-            </div>
-        </section>
+    <!-- KPI Section -->
+    <section class="kpi-section">
+        <h2>📊 Key Metrics</h2> 
+        <div class="kpi-card">
+            <h2>💰 Total Sales</h2>
+            <p>${totalSales.toFixed(2)}</p>
+        </div>
+        <div class="kpi-card">
+            <h2>📈 Total Profit</h2>
+            <p>${totalProfit.toFixed(2)}</p>
+        </div>
+        <div class="kpi-card">
+            <h2>🎯 Profit Margin</h2>
+            <p>{profitMargin}%</p>
+        </div>
+    </section>
     </aside>
 
     <!-- Content Section -->
@@ -150,16 +150,7 @@ function handleDataLoaded(loadedData) {
         gap: 1rem;
     }
 
-    /* Sidebar */
-    /* .sidebar {
-        background: #f9f9f9;
-        padding: 1rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        height: 100vh;
-        overflow-y: auto;
-    } */
-         /* Sidebar Styles */
+     /* Sidebar Styles */
     .sidebar {
         background: #f9f9f9;
         padding: 1rem;

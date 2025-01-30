@@ -224,16 +224,14 @@
     </main>
 </div>
 
-<!-- Styles -->
 <style>
-    /* Layout */
     .main-container {
         display: grid;
         grid-template-columns: 250px 1fr;
         gap: 1rem;
     }
 
-    /* Sidebar */
+    /* Sidebar Styles */
     .sidebar {
         background: #f9f9f9;
         padding: 1rem;
@@ -244,6 +242,26 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+    }
+        /* KPI Section */
+        .kpi-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .kpi-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .kpi-card p {
+        font-size: 1rem;
+        font-weight: normal;
+        color: #555;
     }
 
     /* Filters */
@@ -266,38 +284,16 @@
         font-size: 1rem;
     }
 
-    /* KPI Section */
-    .kpi-section {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .kpi-card {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 1rem;
-        text-align: center;
-    }
-
-    .kpi-card h3 {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-        color: #333;
-    }
-
-    .kpi-card p {
+    select {
+        padding: 0.5rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
         font-size: 1rem;
-        font-weight: normal;
-        color: #555;
     }
 
-    /* Chart Section */
     .chart-section {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
         gap: 1rem;
     }
 
@@ -316,7 +312,7 @@
         color: #333;
     }
 
-    /* Responsive */
+    /* Responsive Design */
     @media (max-width: 768px) {
         .main-container {
             grid-template-columns: 1fr;
@@ -324,10 +320,6 @@
 
         .sidebar {
             order: 1;
-        }
-
-        .chart-section {
-            grid-template-columns: 1fr;
         }
     }
 </style>

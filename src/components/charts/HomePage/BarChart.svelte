@@ -102,17 +102,27 @@
 
         // X and Y Axes
         svg.append("g").attr("transform", `translate(0, ${height})`).call(d3.axisBottom(xScale));
-        svg.append("g").call(d3.axisLeft(yScale));
+        svg.append("g").call(d3.axisLeft(yScale)
+            .tickFormat(d => `${d < 0 ? "-" : ""}$${d3.format(".2s")(Math.abs(d))}`));
+
+        // X Labels
+        svg.append("text")
+            .attr("x", width / 2)
+            .attr("y", height + 60)
+            .attr("text-anchor", "middle")
+            .style("font-size", "14px")
+            .style("fill", "#2C3E50")
+            .text("Categories");
 
         // Y-axis Label
         svg.append("text")
             .attr("transform", "rotate(-90)")
-            .attr("y", -50)
+            .attr("y", -60)
             .attr("x", -height / 2)
             .attr("text-anchor", "middle")
             .style("font-size", "16px")
             .style("font-weight", "bold")
-            .text("Total Sales (USD)");
+            .text("Total Sales ($)");
     }
 </script>
 
@@ -186,7 +196,7 @@
     }
 </style>
 
-<div class="chart-container">
+<!-- <div class="chart-container"> -->
     <!-- Filter Section
     <section class="select-container">
         <label for="region">Select Region:</label>
@@ -200,4 +210,4 @@
 
     <!-- Bar Chart Section -->
     <div id="barChart"></div>
-</div>
+<!-- </div> -->

@@ -131,32 +131,6 @@
     }
 </script>
 
-<!-- ✅ Stylish Segment Filter Section -->
-<!-- <section style="
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 1rem; 
-    padding: 1rem;
-    border-radius: 10px;
-    background-color: #f3f4f6;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-">
-    <label for="segmentSelect" style="font-size: 1.1rem; font-weight: bold;">Select Customer Segment:</label>
-    <select id="segmentSelect" bind:value={selectedSegment} on:change={filterData} style="
-        padding: 0.5rem;
-        border: 2px solid #3498db;
-        border-radius: 8px;
-        font-size: 1rem;
-        background: #f9f9f9;
-    ">
-        <option value="All Segments">All Segments</option>
-        {#each uniqueSegments as segment}
-            <option value={segment}>{segment}</option>
-        {/each}
-    </select>
-</section> -->
-
 <!-- Heatmap Container -->
 <div id="heatmap" style="
     width: 100%; 
@@ -169,7 +143,8 @@
 </div>
 
 <!-- Tooltip -->
-<div id="heatmapTooltip" style="
+<div id="heatmapTooltip" 
+    style="
     position: absolute;
     background: white;
     border: 1px solid #ccc;
@@ -177,5 +152,5 @@
     padding: 10px;
     display: none;
     pointer-events: none;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-"></div>
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);">
+</div>

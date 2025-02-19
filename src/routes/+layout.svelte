@@ -12,8 +12,8 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        max-width: 1410px;
-        margin: auto;
+        /* max-width: 1410px; */
+        /* margin: auto; */
         /* padding: 1rem; */
     }
     /* Footer */
@@ -22,20 +22,20 @@
         padding: 1rem;
         background: #333;
         color: white;
-        margin-top: 1rem;
-        border-radius: 8px;
+        /* margin-top: 1rem; */
+        /* border-radius: 8px; */
     }
 </style>
 
 <div class="main-page">
     <!-- Navbar -->
-    <Navbar title="Superstore Sales Dashboard" />
+    <Navbar title="Superstore Dashboard" />
 
     <!-- Main Content -->
     {@render children()}
     
     <!-- Footer -->
     <footer>
-        <p>© 2024 Superstore Sales Dashboard</p>
+        <p>© 2025 Prateek Kumar Sharma | Dataset by <a href="https://www.kaggle.com/rohitsahoo/datasets" target="_blank">Rohit Sahoo</a></p>
     </footer>
 </div>

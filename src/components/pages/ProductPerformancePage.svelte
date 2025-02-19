@@ -82,7 +82,7 @@
 
 <!-- 📌 Page Title -->
 <section class="page-title">
-    <h1>📦 Product Performance Anlysis</h1>
+    <h1>📦 Product Performance Anlaysis</h1>
     <p>Gain deep insights into Product Sales, Profitability, and Discount Trends. 
         Identify Top-Performing Products and Optimize Strategies for Growth.</p>
 </section>
@@ -184,7 +184,7 @@
         padding: 1rem;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        height: 100vh;
+        height: 100%;
         overflow-y: auto;
         display: flex;
         flex-direction: column;

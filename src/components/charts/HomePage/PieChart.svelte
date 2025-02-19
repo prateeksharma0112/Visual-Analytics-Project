@@ -51,7 +51,7 @@
 
         const color = d3.scaleOrdinal()
             .domain(profitByRegion.map(d => d.Region))
-            .range(["#ff9999", "#66b3ff", "#99ff99", "#ffcc99", "#c2c2f0", "#ffb3e6"]);
+            .range(["#E6F3FF", "#B3DAFF", "#80C2FF", "#4DA9FF", "#1A91FF", "#0077E6"]);
 
         const pie = d3.pie().value(d => d.Profit);
         const data_ready = pie(profitByRegion);
@@ -181,7 +181,7 @@
     } */
 </style>
 
-<div class="chart-container">
+<!-- <div class="chart-container"> -->
     <!-- Filter Section -->
     <!-- <section class="filter-container">
         <label for="segmentSelect">Select Customer Segment:</label>
@@ -195,4 +195,4 @@
 
     <!-- Pie Chart Section -->
     <div id="pieChart"></div>
-</div>
+<!-- </div> -->

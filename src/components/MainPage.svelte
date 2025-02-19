@@ -49,34 +49,47 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    /* Charts Section */
-    .chart-section {
+    /* .chart-section {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
         padding: 1rem;
         background: #f9f9f9;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    } */
+    .chart-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+    /* grid-template-columns: repeat(2, 1fr); */
+    gap: 1rem;
+    padding: 1rem;
+    }
+
+    .chart-container:nth-child(3) {
+        grid-column: 1 / -1; /* Full width for third chart */
     }
 
     .chart-container {
-        padding: 1rem;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-width: 0; /* Fix grid overflow */
+    height: auto; /* Remove fixed height */
+}
 
-    /* Media Queries for Smaller Screens */
+    /* Mobile responsiveness */
     @media (max-width: 768px) {
-        .kpi-section {
-            grid-template-columns: 1fr; /* Stack KPIs vertically */
-        }
-
-        .chart-section {
-            grid-template-columns: 1fr; /* Stack charts vertically */
-        }
+    .chart-section {
+        grid-template-columns: 1fr;
     }
+    
+    .chart-container {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
 </style>
 
     <DataLoader {data} onDataLoaded={processData} />
@@ -119,25 +132,25 @@
     {#if dataLoaded}
     <section class="chart-section">
         <div class="chart-container">
-            <h3>📊 Category Sales Breakdown</h3>
+            <h3 style="text-align: center;">💹 Category Performance: Sales Comparison</h3>
             <!-- <p class="chart-description">Top performing product categories</p> -->
             <BarChart {data} />
         </div>
         <div class="chart-container">
-            <h3>🌍 Regional Profit Share</h3>
+            <h3 style="text-align: center;">📍 Profit Distribution Across Regions</h3>
             <!-- <p class="chart-description">Geographic earnings contribution</p> -->
             <PieChart {data} />
         </div>
         <div class="chart-container">
-            <h3>📈 Profit Growth Timeline</h3>
+            <h3 style="text-align: center;">🚀 Profit Trends Over Time</h3>
             <!-- <p class="chart-description">Monthly performance trajectory</p> -->
             <LineChart {data} />
         </div>
-        <div class="chart-container">
+        <!-- <div class="chart-container">
             <h3>🔥 Discount Effectiveness Map</h3>
-            <!-- <p class="chart-description">Price reduction influence analysis</p> -->
+            <p class="chart-description">Price reduction influence analysis</p>
             <HeatmapChart {data} />
-        </div>
+        </div> -->
     </section>
     {:else}
         <p style="text-align: center; padding: 2rem;">Loading data and charts...</p>

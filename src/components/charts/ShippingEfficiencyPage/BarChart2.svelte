@@ -79,15 +79,6 @@
         svg.append("g").call(d3.axisLeft(yScale).ticks(6))
             .style("font-size", "12px");
 
-        // ✅ X & Y Labels
-        svg.append("text")
-            .attr("x", width / 2)
-            .attr("y", height + 60)
-            .attr("text-anchor", "middle")
-            .style("font-size", "14px")
-            .style("fill", "#2C3E50")
-            .text("Shipping Mode");
-
         svg.append("text")
             .attr("x", -height / 2)
             .attr("y", -45)

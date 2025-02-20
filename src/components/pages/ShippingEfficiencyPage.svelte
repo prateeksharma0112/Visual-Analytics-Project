@@ -67,7 +67,7 @@
             'Same Day': 0,
             'First Class': 1,
             'Second Class': 2,
-            'Standard Class': 3,
+            'Standard Class': 4,
         };
 
         // ✅ Calculate Delayed Shipments Based on Shipping Mode
@@ -190,7 +190,7 @@
             <Histogram data={fulfillmentTimeDistribution} xField="days" yField="count" />
         </div>
         <div class="chart-container">
-            <h3>🥧⚠️ Delivery Status</h3>
+            <h3>🥧⚠️ Shipment Status</h3>
             <p class="chart-subtitle">On-time vs delayed orders</p>
             <PieChart data={delayedOrders} labelField="label" valueField="value" />
         </div>

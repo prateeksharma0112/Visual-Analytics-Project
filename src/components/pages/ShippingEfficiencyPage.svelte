@@ -64,15 +64,15 @@
 
         // ✅ Shipping Mode Delay Thresholds
         const delayThresholds = {
-            'Same Day': 1,
-            'First Class': 2,
-            'Second Class': 3,
-            'Standard Class': 5,
+            'Same Day': 0,
+            'First Class': 1,
+            'Second Class': 2,
+            'Standard Class': 3,
         };
 
         // ✅ Calculate Delayed Shipments Based on Shipping Mode
         const delayedOrdersCount = filteredData.filter(d => {
-            const delayThreshold = delayThresholds[d['Ship Mode']] || 5; // Default threshold is 5 days
+            const delayThreshold = delayThresholds[d['Ship Mode']]; // Default threshold is 5 days
             return d['Fulfillment Time'] > delayThreshold;
         }).length;
 

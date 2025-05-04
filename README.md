@@ -18,13 +18,16 @@ This web-based dashboard provides key business insights using interactive charts
 - ✅ **Custom Data-Driven Visualizations** – Beyond basic plots for deeper insights
 - ✅ **Clean UI/UX** – Modern design for seamless navigation and user experience
 - ✅ **Effective Storytelling** – Data used meaningfully to narrate business performance
+- ✅ **Multi-Page Dashboard** -
+  - **Overview**: Provides a high-level view of business performance.  
+  - **Detailed Pages**: Dive deeper into specific aspects with pages for **Sales & Profit**, **Product Performance**, **Shipping Efficiency**, and **Executive Summary**.
 
 ---
 
 ## 💻 Tech Stack
 
-- **[Svelte](https://svelte.dev/)**: For reactive UI development.
-- **[D3.js](https://d3js.org/)**: Utilized for creating custom, high-performance data visualizations.
+- **Svelte**: For reactive UI development.
+- **D3.js**: Utilized for creating custom, high-performance data visualizations.
 - **JavaScript / HTML / CSS**: Applied for frontend logic and styling
 
 **Dataset**: [Superstore Sales Dataset](https://www.kaggle.com/datasets/rohitsahoo/sales-forecasting)
@@ -66,13 +69,13 @@ The project leverages the Superstore Sales Dataset, containing detailed records 
 ## 📚 Learning Outcomes
 This project helped me strengthen skills in:
 
-🔹 📊 Interactive data visualization.
+  - 📊 Interactive data visualization.
 
-🔹 💻 Frontend development with Svelte.
+  - 💻 Frontend development with Svelte.
 
-🔹 🧠 Designing for intuitive user experience.
+  - 🧠 Designing for intuitive user experience.
 
-🔹 🗣️ Storytelling through data insights.
+  - 🗣️ Storytelling through data insights.
 
 
 ## 📎 License
